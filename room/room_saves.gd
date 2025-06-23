@@ -9,22 +9,23 @@ func _ready():
 	var dir = DirAccess.open(OS.get_environment("USERPROFILE") + "/carousel_save_files")
 	
 	if dir == null:
-		dir.make_dir(OS.get_environment("USERPROFILE") + "carousel_save_files")
-	
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	
-	while file_name != "":
-		var inst = save_node.instantiate()
-		inst.title = file_name
-		inst.file = OS.get_environment("USERPROFILE") + "/carousel_save_files/" + file_name
+		dir = DirAccess.open(OS.get_environment("USERPROFILE"))
+		dir.make_dir("carousel_save_files")
+	else:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
 		
-		var fa = FileAccess.open(inst.file, FileAccess.READ)
-		var content = fa.get_as_text().split(",")
-		Global.current_csv = content[1]
-		
-		vbox.add_child(inst)
-		file_name = dir.get_next()
+		while file_name != "":
+			var inst = save_node.instantiate()
+			inst.title = file_name
+			inst.file = OS.get_environment("USERPROFILE") + "/carousel_save_files/" + file_name
+			
+			var fa = FileAccess.open(inst.file, FileAccess.READ)
+			var content = fa.get_as_text().split(",")
+			Global.current_csv = content[1]
+			
+			vbox.add_child(inst)
+			file_name = dir.get_next()
 
 func _process(delta):
 	pass
