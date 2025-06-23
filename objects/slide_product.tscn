@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnxajbauin4s0"]
+
+[ext_resource type="Script" path="res://objects/slide_product.gd" id="1_tyugo"]
+[ext_resource type="Script" path="res://data/product_data.gd" id="2_nj1l6"]
+[ext_resource type="FontFile" uid="uid://cfc8lg5r6pssq" path="res://font/ArchivoBlack-Regular.ttf" id="3_ss58e"]
+[ext_resource type="Script" path="res://objects/dynamic_label.gd" id="4_8el60"]
+
+[sub_resource type="Resource" id="Resource_4hd5e"]
+script = ExtResource("2_nj1l6")
+img_url = "boh"
+name = "Lego Architecture La Torre Inclinada de Pisa V29 21015"
+price = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pttyc"]
+bg_color = Color(0.996078, 0.309804, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i7t7"]
+bg_color = Color(0.996078, 0.309804, 0.176471, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[node name="slide_product" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tyugo")
+data = SubResource("Resource_4hd5e")
+
+[node name="image" type="TextureRect" parent="."]
+self_modulate = Color(0.992157, 0.984314, 0.933333, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -302.0
+offset_right = 20.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+
+[node name="price" type="Label" parent="."]
+layout_mode = 0
+offset_left = 629.0
+offset_top = 566.0
+offset_right = 1147.0
+offset_bottom = 629.0
+theme_override_colors/font_color = Color(0.992157, 0.984314, 0.933333, 1)
+theme_override_fonts/font = ExtResource("3_ss58e")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_pttyc")
+text = "550.70€"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 639.0
+offset_top = 14.0
+offset_right = 1137.0
+offset_bottom = 143.0
+theme_override_colors/font_color = Color(0.992157, 0.984314, 0.933333, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_ss58e")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxFlat_8i7t7")
+text = "Lego Architecture La Torre Inclinada de Pisa V29 21015"
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+script = ExtResource("4_8el60")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="@Timer@264960" type="Timer" parent="HTTPRequest"]
+one_shot = true

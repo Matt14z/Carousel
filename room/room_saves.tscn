@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://br6fht3l8jg2f"]
+
+[ext_resource type="Script" path="res://objects/file.gd" id="1_qdup6"]
+[ext_resource type="Script" path="res://room/room_saves.gd" id="1_v4fcw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2u7m"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fls6"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jp4hy"]
+
+[node name="room_saves" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v4fcw")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="name" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 392.0
+offset_bottom = 37.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_e2u7m")
+placeholder_text = "Name"
+
+[node name="file" type="Button" parent="."]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 6.0
+offset_right = 443.0
+offset_bottom = 37.0
+theme_override_colors/font_pressed_color = Color(1, 0.92549, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4fls6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jp4hy")
+text = "csv"
+script = ExtResource("1_qdup6")
+
+[node name="file_dialog" type="FileDialog" parent="file"]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(784, 486)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.csv")
+
+[node name="plus" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_top = 6.0
+offset_right = -9.0
+offset_bottom = 37.0
+grow_horizontal = 0
+theme_override_colors/font_pressed_color = Color(1, 0.92549, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4fls6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jp4hy")
+text = "+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.091
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0319977
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="file" to="file" method="_on_pressed"]
+[connection signal="file_selected" from="file/file_dialog" to="file" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="plus" to="." method="_on_plus_pressed"]

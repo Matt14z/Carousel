@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq556dgx5pi7w"]
+
+[ext_resource type="Script" path="res://objects/record_product.gd" id="1_s3avu"]
+[ext_resource type="Texture2D" uid="uid://0x6yfb7bnq2v" path="res://images/img_no_data.png" id="2_7odxu"]
+
+[node name="record_product" type="Control"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s3avu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="image" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_7odxu")
+expand_mode = 2
+
+[node name="name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " INVALID PRODUCT"
+
+[node name="presentable" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Presentable"
+
+[node name="image_big" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 353.0
+offset_top = 118.0
+offset_right = 818.0
+offset_bottom = 543.0
+
+[connection signal="mouse_entered" from="HBoxContainer/image" to="." method="_on_image_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/image" to="." method="_on_image_mouse_exited"]

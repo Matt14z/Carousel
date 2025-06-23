@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://srwkvky7kj7y"]
+
+[ext_resource type="Script" path="res://objects/save_file.gd" id="1_cqxab"]
+
+[node name="save_file" type="Control"]
+custom_minimum_size = Vector2(0, 39)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -609.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cqxab")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "unnamed save
+"
+
+[node name="btn_open" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 19
+text = "open"
+
+[connection signal="pressed" from="HBoxContainer/btn_open" to="." method="_on_btn_open_pressed"]
